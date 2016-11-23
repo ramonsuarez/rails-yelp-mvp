@@ -4,3 +4,9 @@
 require_relative 'config/application'
 
 Rails.application.load_tasks
+
+# Attempt of fix for rake not working
+require 'rspec/core/rake_task'
+task :default => :spec
+RSpec::Core::RakeTask.new
+
