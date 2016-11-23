@@ -1,5 +1,5 @@
 class RestaurantsController < ApplicationController
-before_action :set_restaurant, only: [:index, :show, :new, :create]
+before_action :set_restaurant, only: [:show, :new, :create]
   def index         # GET /restaurants
     @restaurants = Restaurant.all
   end
@@ -32,7 +32,7 @@ before_action :set_restaurant, only: [:index, :show, :new, :create]
   private
 
   def restaurant_params
-    params.require(:restaurant).permit(:description, :due_date, :priority)
+    params.require(:restaurant).permit(:name, :address, :phone_number, :category)
   end
 
   def set_restaurant

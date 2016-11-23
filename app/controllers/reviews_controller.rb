@@ -1,24 +1,25 @@
 class ReviewsController < ApplicationController
 
-def show
+  def show
+  end
 
-def new
-  @review = Review.new
-end
+  def new
+    @review = Review.new
+  end
 
-def create
-    @review = @restaurant.reviews.build(review_params)
-    @review.save
-    redirect_to restaurant_path(@restaurant)
+  def create
+      @review = @restaurant.reviews.build(review_params)
+      @review.save
+      redirect_to restaurant_path(@restaurant)
 
-private
+  private
 
-def review_params
-  params.require(:review).permit(:description, :due_date, :priority)
-end
+  def review_params
+    params.require(:review).permit(:content, :rating)
+  end
 
-def set_review
-  @review = Review.find(params[:id])
-end
+  def set_review
+    @review = Review.find(params[:restaurant_id])
+  end
 
 end
