@@ -1,5 +1,5 @@
 class RestaurantsController < ApplicationController
-before_action :set_restaurant, only: [:show, :new, :create]
+before_action :set_restaurant, only: [:show, :edit, :update]
   def index         # GET /restaurants
     @restaurants = Restaurant.all
   end
@@ -12,8 +12,12 @@ before_action :set_restaurant, only: [:show, :new, :create]
   end
 
   def create        # POST /restaurants
-    Restaurant.create(restaurant_params)
-    redirect_to restaurants_path
+    @restaurant = Restaurant.create(restaurant_params)
+    if @restaurant.valid?
+      redirect_to restaurant_path(@restaurant)
+    else
+      render "restaurants/new"
+    end
   end
 
   def edit          # GET /restaurants/:id/edit
